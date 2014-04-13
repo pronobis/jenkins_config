@@ -8,7 +8,7 @@ JENKINS_CLI=${JENKINS_HOME}/jenkins-cli.jar
 PLUGIN_LIST_FILE=${SCRIPTS_PATH}/plugin_list.txt
 
 # listing installed plugins
-installed_plugin_list=$(java -jar ${JENKINS_CLI} -s http://localhost:8080 list-plugins)
+installed_plugin_list=$(java -jar ${JENKINS_CLI} -s https://localhost:8080 list-plugins)
 plugin_list=$(cat $PLUGIN_LIST_FILE)
 #echo "$plugin_list"
 
@@ -47,7 +47,7 @@ do
 
 	if [ $found == false ]; then		
 		echo "Plugin $p1 missing, start installation"
-		java -jar ${JENKINS_CLI} -s http://localhost:8080 install-plugin $p1	
+		java -jar ${JENKINS_CLI} -s https://localhost:8080 install-plugin $p1	
 	fi
 	
 done
