@@ -10,8 +10,8 @@ source $ROS_SETUP_FILE
 source $SETUP_FILE
 
 echo "============ Building catkin workspace ============"
-# catkin_make clean
-catkin_make
-# catkin_make run_tests
+# catkin_make clean  # TODO: uncomment when ready
+catkin_make  # TODO: use -j1? some pacakges does not build at first time
+# catkin_make run_tests  # TODO: uncomment when ready
 
 
