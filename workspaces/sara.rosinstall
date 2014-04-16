@@ -1,3 +1,25 @@
-- git: {local-name: src/sara_scitos, uri: 'git@github.com:pronobis/sara_scitos.git', version: master}
-- setup-file:
-    local-name: /opt/ros/hydro/setup.bash
+- git: {local-name: sara_robots, uri: 'git@github.com:pronobis/sara_robots.git', version: master}
+- git: {local-name: sara_simulation, uri: 'git@github.com:pronobis/sara_simulation.git',
+    version: master}
+- git: {local-name: sara_teleop, uri: 'git@github.com:pronobis/sara_teleop.git', version: master}
+- git: {local-name: sara_mapping, uri: 'git@github.com:pronobis/sara_mapping.git',
+    version: master}
+- git: {local-name: sara_uw, uri: 'git@github.com:pronobis/sara_uw.git', version: master}
+- git: {local-name: sara_visualization, uri: 'git@github.com:pronobis/sara_visualization.git',
+    version: master}
+- git: {local-name: sara_tools, uri: 'git@github.com:pronobis/sara_tools.git',
+    version: master}
+- git: {local-name: sara_drivers, uri: 'git@github.com:pronobis/sara_drivers.git',
+    version: master}
+- git: {local-name: sara_actions, uri: 'git@github.com:pronobis/sara_actions.git',
+    version: master}
+- git: {local-name: sara_categorical, uri: 'git@github.com:pronobis/sara_categorical.git',
+    version: master}
+- git: {local-name: sara_hri, uri: 'git@github.com:pronobis/sara_hri.git',
+    version: master}
+- git: {local-name: sara_libs, uri: 'git@github.com:pronobis/sara_libs.git',
+    version: master}
+- git: {local-name: sara_processing, uri: 'git@github.com:pronobis/sara_processing.git',
+    version: master}
+- git: {local-name: sara_world, uri: 'git@github.com:pronobis/sara_world.git',
+    version: master}
