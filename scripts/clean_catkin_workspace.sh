@@ -2,7 +2,8 @@
 # merge new entries in workspace (.rosinstall) file and update all tracked repos
 
 # variables
-SETUP_FILE=$WORKSPACE"/setup.bash"
+ROS_SETUP_FILE="/opt/ros/hydro/setup.bash"
+SETUP_FILE=$WORKSPACE"/devel/setup.bash"
 CMAKELISTS_FILE=$WORKSPACE"/src/CMakeLists.txt"
 DEVEL_DIR=$WORKSPACE"/devel"
 INSTALL_DIR=$WORKSPACE"/install"
@@ -33,6 +34,8 @@ done
 
 
 # creating new cmakelist file
+echo $ROS_SETUP_FILE
+source $ROS_SETUP_FILE
 source $SETUP_FILE
 cd $WORKSPACE"/src"
 capture_stdout=$(catkin_init_workspace)
