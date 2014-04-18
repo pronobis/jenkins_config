@@ -6,10 +6,10 @@ ROS_SETUP_FILE="/opt/ros/hydro/setup.bash"
 SETUP_FILE=$WORKSPACE"/devel/setup.bash"
 CMAKELISTS_FILE=$WORKSPACE"/src/CMakeLists.txt"
 DEVEL_DIR=$WORKSPACE"/devel"
-INSTALL_DIR=$WORKSPACE"/install"
+BUILD_DIR=$WORKSPACE"/build"
 
 # placing all items into array
-items="$CMAKELISTS_FILE $DEVEL_DIR $INSTALL_DIR"
+items="$CMAKELISTS_FILE $DEVEL_DIR $BUILD_DIR"
 
 # removing files and directories
 for item in $items;
@@ -34,12 +34,11 @@ done
 
 
 # creating new cmakelist file
-echo $ROS_SETUP_FILE
 source $ROS_SETUP_FILE
-source $SETUP_FILE
+# source $SETUP_FILE
+
 cd $WORKSPACE"/src"
 capture_stdout=$(catkin_init_workspace)
-
 
 
 
