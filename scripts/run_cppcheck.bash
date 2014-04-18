@@ -18,7 +18,7 @@ fi
 for ROS_PATH in $@;
 do
     echo "running cppcheck"
-	cppcheck -v --enable=all -q --xml $ROS_PATH &>> ${WORKSPACE}/cppcheck.xml
+	cppcheck --enable=all -q --xml $ROS_PATH &>> ${WORKSPACE}/cppcheck.xml
 
 done
 
