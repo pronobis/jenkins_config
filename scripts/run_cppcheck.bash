@@ -10,13 +10,15 @@ if [ -f ${WORKSPACE}/cppcheck.xml ];
 then
 	echo "removing old cppcheck.xml file"
 	rm ${WORKSPACE}/cppcheck.xml
+    echo "done"
 else
 	echo "cppcheck.xml file not found, skipping deletion"
 fi
 
 for ROS_PATH in $@;
 do
-	cppcheck --enable=all -q --xml $ROS_PATH &>> ${WORKSPACE}/cppcheck.xml
+    echo "running cppcheck"
+	cppcheck -v --enable=all -q --xml $ROS_PATH &>> ${WORKSPACE}/cppcheck.xml
 
 done
 
