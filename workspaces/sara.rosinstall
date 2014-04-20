@@ -54,3 +54,7 @@
     uri: git@github.com:pronobis/sara_libs.git
     local-name: sara_libs
     version: master
+- git:
+    uri: git@github.com:pronobis/sara_scitos.git
+    local-name: sara_scitos
+    version: master
