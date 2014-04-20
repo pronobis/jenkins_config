@@ -13,4 +13,5 @@ $JOB_SCRIPTS_PATH"/run_cpplint.bash" $WORKSPACE"/src" &&
 $JOB_SCRIPTS_PATH"/run_codecount.bash" $WORKSPACE"/src" &&
 $JOB_SCRIPTS_PATH"/build_catkin_workspace.sh" &&
 $JOB_SCRIPTS_PATH"/run_tests.sh" &&
+$JOB_SCRIPTS_PATH"/send_to_robot.sh" &&
 $JOB_SCRIPTS_PATH"/say_done.sh"
