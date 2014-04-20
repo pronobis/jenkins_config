@@ -28,7 +28,7 @@ for ROS_PATH in  "$@";
 do
 
 	echo -e "Examining path: "$ROS_PATH
-	python ${SCRIPTS_PATH}/cpplint.py  `find $ROS_PATH -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
+	python ${SCRIPTS_PATH}/cpplint.py --linelength=100 `find $ROS_PATH -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
 
 	### Ignore new-line curly brace warnings.
 	grep -v '{ should almost always be at the end of the previous line' ${WORKSPACE}/cpplint_warnings_absolute.txt > ${WORKSPACE}/cpplint_filter1.txt
