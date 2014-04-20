@@ -83,7 +83,7 @@ else
 
 	# cloning all git repositories in src directory
 	cd ${CATKIN_WORKSPACE}/src
-	capture_stdout=$(wstool update -v -j10)
+	capture_stdout=$(wstool update -v -j20)
 
 	echo behind
 	exit 0
