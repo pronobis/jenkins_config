@@ -1,19 +1,22 @@
 #!/bin/bash
 
 # variables
-WORKSPACE=$1
-JOB_WORKSPACE_FILE=$2
+ROS_SETUP_FILE="/opt/ros/hydro/setup.bash"
+ROS_INSTALL_FILE=${JENKINS_HOME}/jenkins_config/workspaces/${JOB_NAME}.rosinstall
 
-# initializing ros workspace
-mkdir -p "$WORKSPACE"
-cd $WORKSPACE # entering job workspace
-capture_stdout=$(wstool init ${WORKSPACE}/src)
-cd $WORKSPACE/src
-capture_stdout=$(wstool merge ${JOB_WORKSPACE_FILE})
+echo
+echo "============================================================================"
+echo "Creating the catkin workspace"
+echo "============================================================================"
 
-# cloning all git repositories in src directory
-cd $WORKSPACE/src
-capture_stdout=$(wstool update -v -j10)
+echo "Initializing workspace:"
+mkdir -p "${WORKSPACE}"
+cd ${WORKSPACE}
+wstool init ${WORKSPACE}/src
+cd ${WORKSPACE}/src
+wstool merge ${ROS_INSTALL_FILE}
 
-
-
+echo
+echo "Cloning repositories:"
+cd ${WORKSPACE}/src
+wstool update -v -j20

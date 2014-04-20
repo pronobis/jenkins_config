@@ -13,7 +13,7 @@ if [ -f $CATKIN_SETUP_FILE ];
 then
 
 	# entering workspace
-	cd $1
+	cd $1/src
 
 	# merging workspace file
 	if [ -f $JOB_WORKSPACE_FILE ];
@@ -73,11 +73,22 @@ then
 	done
 
 else
-	${SCRIPTS_PATH}/create_catkin_workspace.sh ${CATKIN_WORKSPACE} ${JOB_WORKSPACE_FILE}
+
+	# initializing ros workspace
+	mkdir -p "${CATKIN_WORKSPACE}"
+	cd ${CATKIN_WORKSPACE} # entering job workspace
+	capture_stdout=$(wstool init ${CATKIN_WORKSPACE}/src)
+	cd ${CATKIN_WORKSPACE}/src
+	capture_stdout=$(wstool merge ${JOB_WORKSPACE_FILE})
+
+	# cloning all git repositories in src directory
+	cd ${CATKIN_WORKSPACE}/src
+	capture_stdout=$(wstool update -v -j10)
+
 	echo behind
 	exit 0
-fi
 
+fi
 
 
 echo synced

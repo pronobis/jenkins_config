@@ -3,10 +3,13 @@
 # variables
 ROS_SETUP_FILE="/opt/ros/hydro/setup.bash"
 
+# sourcing setup file
+source $ROS_SETUP_FILE
+
+echo
 echo
 echo "============================================================================"
-echo "Building catkin workspace"
+echo "Running tests"
 echo "============================================================================"
+catkin_make run_tests
 
-source $ROS_SETUP_FILE
-catkin_make

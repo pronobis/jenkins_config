@@ -4,12 +4,15 @@
 #path to scripts directory
 SCRIPTS_PATH=${JENKINS_HOME}/jenkins_config/scripts
 
-echo "===== Executing Cpplint ====="
+echo
+echo "============================================================================"
+echo "Executing Cpplint"
+echo "============================================================================"
 
 for ROS_PATH in  "$@";
 do
 
-	echo -e "\tExamining path: "$ROS_PATH
+	echo -e "Examining path: "$ROS_PATH
 	python ${SCRIPTS_PATH}/cpplint.py  `find $ROS_PATH -regex '.*\.\(cpp\|h\)' | grep -v /external/ | grep -v /test/ | grep -v /build/ | grep -v /msg_gen/ | grep -v /liboxts_rt/ | grep -v /cfg/cpp/ | grep -v /srv_gen/` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
 
 	### Ignore new-line curly brace warnings.
@@ -24,7 +27,7 @@ do
 done
 
 # Make all paths relative so jenkins can find them.
-echo -e "\tChanging Cpplint absolute paths to relative paths"
+echo -e "Changing Cpplint absolute paths to relative for Jenkins"
 sed "s:"$WORKSPACE"/src:src:g" ${WORKSPACE}/cpplint.txt > ${WORKSPACE}/cpplint_warnings.txt
 
 #clenup
@@ -33,5 +36,5 @@ rm ${WORKSPACE}/cpplint_filter1.txt
 rm ${WORKSPACE}/cpplint_filter2.txt
 rm ${WORKSPACE}/cpplint.txt
 
-echo "===== Completed Cpplint ====="
+echo "Done!"
 
