@@ -1,19 +1,34 @@
 #!/bin/bash
 # Cpplint
 
-#path to scripts directory
+# variables
 SCRIPTS_PATH=${JENKINS_HOME}/jenkins_config/scripts
+IGNORE_PATH=${JENKINS_HOME}/jenkins_config/cpplint_ignore
 
 echo
 echo "============================================================================"
 echo "Executing Cpplint"
 echo "============================================================================"
 
+# Read the ignore file
+grepstr=""
+while read p; do
+  echo "Ignoring $p"
+
+  if [ "$grepstr" == "" ]
+  then
+      grepstr="$p"
+  else
+      grepstr="${grepstr}\|$p"
+  fi
+done < $IGNORE_PATH
+echo
+
 for ROS_PATH in  "$@";
 do
 
 	echo -e "Examining path: "$ROS_PATH
-	python ${SCRIPTS_PATH}/cpplint.py  `find $ROS_PATH -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v /external/ | grep -v /test/ | grep -v /build/ | grep -v /msg_gen/ | grep -v /liboxts_rt/ | grep -v /cfg/cpp/ | grep -v /srv_gen/ | grep -v /sara_libs/ | grep -v /sara_objects_roboearth/ | grep -v /sara_prosilica/` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
+	python ${SCRIPTS_PATH}/cpplint.py  `find $ROS_PATH -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
 
 	### Ignore new-line curly brace warnings.
 	grep -v '{ should almost always be at the end of the previous line' ${WORKSPACE}/cpplint_warnings_absolute.txt > ${WORKSPACE}/cpplint_filter1.txt
