@@ -36,8 +36,14 @@ do
 	### Ignore new-line else warnings.
 	grep -v 'An else should appear on the same line as the preceding }' ${WORKSPACE}/cpplint_filter1.txt > ${WORKSPACE}/cpplint_filter2.txt
 
+        ### Indentation before public/private/protected
+	grep -v 'should be indented +1 space inside' ${WORKSPACE}/cpplint_filter2.txt > ${WORKSPACE}/cpplint_filter3.txt
+
+        ### Do not leave a blank line after public/private/protected
+	grep -v 'Do not leave a blank line after' ${WORKSPACE}/cpplint_filter3.txt > ${WORKSPACE}/cpplint_filter4.txt
+        
 	### Make all paths relative so jenkins can find them.
-	sed 's/\/var\/lib\/jenkins\/jobs\/${JOB_NAME}\/workspace\///g' ${WORKSPACE}/cpplint_filter2.txt >> ${WORKSPACE}/cpplint.txt
+	sed 's/\/var\/lib\/jenkins\/jobs\/${JOB_NAME}\/workspace\///g' ${WORKSPACE}/cpplint_filter4.txt >> ${WORKSPACE}/cpplint.txt
 	
 done
 
