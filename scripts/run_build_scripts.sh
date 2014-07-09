@@ -10,6 +10,7 @@ JOB_SCRIPTS_PATH=/var/lib/jenkins/jenkins_config/scripts
 $JOB_SCRIPTS_PATH"/remove_catkin_workspace.sh" &&
 $JOB_SCRIPTS_PATH"/create_catkin_workspace.sh" &&
 $JOB_SCRIPTS_PATH"/run_cpplint.bash" $WORKSPACE"/src" &&
+$JOB_SCRIPTS_PATH"/run_pep8.bash" $WORKSPACE"/src" &&
 $JOB_SCRIPTS_PATH"/run_codecount.bash" $WORKSPACE"/src" &&
 $JOB_SCRIPTS_PATH"/build_catkin_workspace.sh" &&
 $JOB_SCRIPTS_PATH"/run_tests.sh" &&
