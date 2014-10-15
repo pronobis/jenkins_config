@@ -30,7 +30,7 @@ do
 
   echo -e "Examining following files in path: "$ROS_PATH
   find . -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"
-  ${SCRIPTS_PATH}/cpplint --filter=-legal/copyright,-build/header_guard `find . -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
+  ${SCRIPTS_PATH}/cpplint --filter=-legal/copyright,-build/header_guard,-runtime/references `find . -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
 
   ### Make all paths relative so jenkins can find them.
   echo -e "Changing all paths so jenkins can find them"
