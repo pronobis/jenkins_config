@@ -1,14 +1,15 @@
 #!/bin/bash
+
 # Cpplint
 
-# variables
+# Variables
 SCRIPTS_PATH=${JENKINS_HOME}/jenkins_config/scripts
 IGNORE_PATH=${JENKINS_HOME}/jenkins_config/cpplint_ignore
 
 echo
-echo "============================================================================"
+echo "========================================================================"
 echo "Executing Cpplint"
-echo "============================================================================"
+echo "========================================================================"
 
 # Read the ignore file
 grepstr=""
@@ -32,14 +33,14 @@ do
   find . -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"
   ${SCRIPTS_PATH}/cpplint --filter=-legal/copyright,-build/header_guard,-runtime/references `find . -regex '.*\.\(cpp\|h\|cc\|hh\)' | grep -v "${grepstr}"` 2> ${WORKSPACE}/cpplint_warnings_absolute.txt
 
-  ### Make all paths relative so jenkins can find them.
+  # Make all paths relative so jenkins can find them.
   echo -e "Changing all paths so jenkins can find them"
   sed 's/\.\//src\//g' ${WORKSPACE}/cpplint_warnings_absolute.txt >> ${WORKSPACE}/cpplint.txt
 done
 
 cp ${WORKSPACE}/cpplint.txt ${WORKSPACE}/cpplint_warnings.txt
 
-#clenup
+# Clenup
 rm ${WORKSPACE}/cpplint_warnings_absolute.txt
 rm ${WORKSPACE}/cpplint.txt
 
