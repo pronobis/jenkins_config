@@ -4,7 +4,7 @@
 
 # Variables
 SCRIPTS_PATH=${JENKINS_HOME}/jenkins_config/scripts
-IGNORE_PATH=${JENKINS_HOME}/jenkins_config/cpplint_ignore
+IGNORE_PATH=${JENKINS_HOME}/jenkins_config/lint_ignore
 
 echo
 echo "========================================================================"

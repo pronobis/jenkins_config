@@ -4,12 +4,26 @@
 
 # Variables
 SCRIPTS_PATH=${JENKINS_HOME}/jenkins_config/scripts
-IGNORE_PATH=${JENKINS_HOME}/jenkins_config/cpplint_ignore
+IGNORE_PATH=${JENKINS_HOME}/jenkins_config/lint_ignore
 
 echo
 echo "================================================================="
 echo "Executing Pep8"
 echo "================================================================="
+
+# Read the ignore file
+grepstr=""
+while read p; do
+  echo "Ignoring $p"
+
+  if [ "$grepstr" == "" ]
+  then
+      grepstr="$p"
+  else
+      grepstr="${grepstr}\|$p"
+  fi
+done < $IGNORE_PATH
+echo
 
 for ROS_PATH in  "$@";
 do
